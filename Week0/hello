@@ -1,1 +1,53 @@
+int LED[5] = {5, 6, 7, 8, 9};
+int currentLED=0;
 
+void setup() {
+  Serial.begin(1200);
+  pinMode(A0,INPUT);//pot 1
+  pinMode(A1,INPUT);
+  pinMode(2,OUTPUT); //buzzer 1
+  pinMode(3,OUTPUT);
+  pinMode(4,OUTPUT);
+
+  for(int i=0;i<5;i++){
+    pinMode(LED[i],OUTPUT);
+  }
+
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+
+  int pot1=analogRead(A0);
+  Serial.print(analogRead(A0));
+  Serial.println();
+
+  digitalWrite(2, LOW); //to ensure all buzzers are low initially
+  digitalWrite(3, LOW);
+  digitalWrite(4, LOW);
+
+  if (pot1 <= 341) digitalWrite(2, HIGH);
+  else if (pot1 <= 682) digitalWrite(3, HIGH);
+  else digitalWrite(4, HIGH);
+
+  //---------------------------------------------------------------------
+
+  int pot2 = analogRead(A1);
+  Serial.print(analogRead(A1));
+  Serial.println();
+
+  int delayTime = map(pot2, 0 /*analog starts from 0*/, 1023 /*ends at 1023*/, 100 /*ms*/, 1000);  // Delay between 100ms to 1000ms
+
+  //map(value, fromLow, fromHigh, toLow, toHigh) arduino inbuilt function to input analog
+
+  for (int i = 0; i < 5; i++) digitalWrite(LED[i], LOW); //all off
+  
+  digitalWrite(LED[currentLED], HIGH);
+  currentLED = (currentLED + 1) % 5; //so that value is 0 to 4
+
+  delay(delayTime);  // Control speed using POT2  
+
+}
+
+
+//Tinkercad Circuit: https://www.tinkercad.com/things/5xoFvyDjtS5-tremendous-robo?sharecode=_vpArzBlsMeJSDOqRj-rtxSaHLzVNj4Jv0Hq-OGvR0o
