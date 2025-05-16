@@ -32,4 +32,5 @@ void loop() {
   }
 }
 
-/*The link for the Tinkercad*/
+/*The link for the Tinkercad simulation is give below.
+https://www.tinkercad.com/things/76DRIXiv40i-fpga1/editel?returnTo=https%3A%2F%2Fwww.tinkercad.com%2Fdashboard&sharecode=xPf9U5EtbAEZBa8nQSatZ7o4QBKuugIY58qQFB7upX8*/
